@@ -1,0 +1,607 @@
+{
+	"info": {
+		"_postman_id": "44c2dc31-a972-41d1-bd4d-410a28ebd9fc",
+		"name": "Admin-chaincode-operations",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15454968"
+	},
+	"item": [
+		{
+			"name": "Register user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"user2@org2\",\n    \"password\":\"Welcome01\",\n    \"org_id\":3,\n    \"org_name\":\"Org2\",\n    \"org_msp\":\"Org2MSP\",\n    \"role\":\"user\",\n    \"status\":1\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_name\":\"adminuser\",\n    \"password\":\"Welcome01\"\n\n\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/admin/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"admin",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjQyMTgxNTQsIm9yZ19pZCI6MSwidXNlcl9pZCI6MX0.ugZ3Ma9lRiiiNOsRhDrDZxie0PUW3CtOZ5m1_8mWJNI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/user/home",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"home"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add organization",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjQyMTgxNTQsIm9yZ19pZCI6MSwidXNlcl9pZCI6MX0.ugZ3Ma9lRiiiNOsRhDrDZxie0PUW3CtOZ5m1_8mWJNI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Org3",
+							"type": "default"
+						},
+						{
+							"key": "msp_id",
+							"value": "Org3MSP",
+							"type": "default"
+						},
+						{
+							"key": "peers_count",
+							"value": "2",
+							"type": "default"
+						},
+						{
+							"key": "peer_name",
+							"value": "\"peer0.org3.example.com\"",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/home/riyaz/projects/integra/integra-admin-backend/integra-nock-sdk/org3.json"
+						},
+						{
+							"key": "peer_url",
+							"value": "",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "peer_cert",
+							"value": "\"peeroOrgcert\"",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "peer_ip",
+							"value": "\"127.010.1.124\"",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/organization",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"organization"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add peers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTY1OTE1OTIsIm9yZ19pZCI6MSwidXNlcl9pZCI6MX0.JfsgQYKEhu_4jgX7Rm2G1QY89sLTnPT58uHLsIYeSUE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"org_id\":4,\n\t\t\"org_name\":\"Org3\",\n\t\t\"peers\":[\n\t\t\t{\n\t\t\t\t\"peer_name\":\"peer0.org3.example.com\",\n\t\t\t\t\"peer_url\":\"grpcs://localhost:10051\",\n\t\t\t\t\"peer_ip\":\"160.788.78.00\",\n\t\t\t\t\"peer_cert\":\"peeroOrg3cert\"\n\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"peer_name\":\"peer1.org3.example.com\",\n\t\t\t\t\"peer_url\":\"grpcs://localhost:11051\",\n\t\t\t\t\"peer_ip\":\"168.188.58.60\",\n\t\t\t\t\"peer_cert\":\"peeroOrg3cert\"\n\n\t\t\t}\n\t\t]\n\t}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/organization/peers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"organization",
+						"peers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chaincode commit readiness",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTg5ODc2NDgsIm9yZ19pZCI6MSwidXNlcl9pZCI6MX0.B-Ybplmv2aPFvoF-Q49B06UwybJbKaj-ZtZ4KVwIUTU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\t\"channel_name\":\"mychannel\",\n\t\t\"cc_id\":\"example_cc\",\n\t\t\"cc_version\":\"1\",\n\t\t\"sequence\":1\n\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/chaincode/commit-readiness",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"chaincode",
+						"commit-readiness"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "chaincode-commit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjE0NTUxNTYsIm9yZ19pZCI6MSwidXNlcl9pZCI6MX0.BcTHYcXptatGj31ddvwtV7ecXtpLFxc1yh8y7RIVNA8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "   {\n\t\t\"release_id\":22\n\n\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/chaincode/commit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"chaincode",
+						"commit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "chaincode list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjA3NTc0MDgsIm9yZ19pZCI6MSwidXNlcl9pZCI6MX0.MKh_zGIVPjf8Xk98kz7S8ch0snCfXU1IqInV6duDzJQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/chaincode/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"chaincode",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create chaincode update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjM4ODQ5MzMsIm9yZ19pZCI6MSwidXNlcl9pZCI6MX0.h83S5lIvJ6AqUVmpA1W0NcICgnLxR-1qQSnN6Tyob2k",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"example_cc_2\",\n    \"version\":\"2\",\n    \"sequence\":2,\n    \"url\" : \"https://github.com/riyazahamed01/test_chaincode/raw/main/example_cc_2.zip\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/chaincode/createupdates/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"chaincode",
+						"createupdates",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Join channel",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjQyMTgxNTQsIm9yZ19pZCI6MSwidXNlcl9pZCI6MX0.ugZ3Ma9lRiiiNOsRhDrDZxie0PUW3CtOZ5m1_8mWJNI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/organization/joinChannel/66",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"organization",
+						"joinChannel",
+						"66"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjAzNTA2NzYsIm9yZ19pZCI6MSwidXNlcl9pZCI6MX0.uDdMRJXhGYoJSGSKVi6cwg23x9Zh5wI54HNdsMOHT90",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/user/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Disable user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTk1NTk0OTAsIm9yZ19pZCI6MSwidXNlcl9pZCI6MX0.ulFvJSvVCzCUVPCbwco4ZX_CqGDmbFht_CfFbhhIBr4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/disable/user/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"disable",
+						"user",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Enable user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTk2MzI2MDgsIm9yZ19pZCI6MSwidXNlcl9pZCI6MX0.eEYIe0sDrWbi3zeDUQbxzf0sC3Io0gBTTACKvaejaHA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/enable/user/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"enable",
+						"user",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin org list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjQyMTgxNTQsIm9yZ19pZCI6MSwidXNlcl9pZCI6MX0.ugZ3Ma9lRiiiNOsRhDrDZxie0PUW3CtOZ5m1_8mWJNI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/organization",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"organization"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Releases list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjM5NzA5MjcsIm9yZ19pZCI6MSwidXNlcl9pZCI6MX0.3p5IQtA7B5Qz6Vm2_9H8TFjybQrHSOpCLXNqxJ-gjbA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/releases/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"releases",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Release logs",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjM5NzA5MjcsIm9yZ19pZCI6MSwidXNlcl9pZCI6MX0.3p5IQtA7B5Qz6Vm2_9H8TFjybQrHSOpCLXNqxJ-gjbA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/releases/logs/47",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"releases",
+						"logs",
+						"47"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Release",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjM5NzA5MjcsIm9yZ19pZCI6MSwidXNlcl9pZCI6MX0.3p5IQtA7B5Qz6Vm2_9H8TFjybQrHSOpCLXNqxJ-gjbA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/releases/delete/48",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"releases",
+						"delete",
+						"48"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

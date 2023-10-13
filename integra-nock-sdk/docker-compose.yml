@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  admin_app:
+    container_name: admin-app
+    image: admin-app-docker
+    restart: always
+    build:
+      context: .
+    command: sh -c "go mod vendor && go run . "
+    ports:
+      - 5000:5000
+    
+    # apk update && apk add libressl-dev && apk add gcc && apk add make && apk add curl git pkgconfig && go mod download && 
